@@ -11,9 +11,9 @@ const {
 const app = express();
 
 const characters = [
-    { id: 1, name: 'main', userId: 1 },
-    { id: 2, name: 'secondary', userId: 1 },
-    { id: 3, name: 'throwaway', userId: 1 }
+    { id: 1, name: 'main', level: 3, race: 'human', strength: 5, constitution: 5, dexterity: 5, wisdom: 5, intelligence: 5, charisma: 5, userId: 1 },
+    { id: 2, name: 'secondary', level: 7, race: 'gnome', strength: 5, constitution: 5, dexterity: 5, wisdom: 5, intelligence: 5, charisma: 5, userId: 3 },
+    { id: 3, name: 'throwaway', level: 1, race: 'elf', strength: 5, constitution: 5, dexterity: 5, wisdom: 5, intelligence: 5, charisma: 5, userId: 2 }
 ]
 
 const users = [
@@ -28,13 +28,21 @@ const CharacterType = new GraphQLObjectType({
     fields: () => ({
         id: { type: GraphQLNonNull(GraphQLInt) },
         name: { type: GraphQLNonNull(GraphQLString) },
+        level: { type: GraphQLNonNull(GraphQLInt) },
+        race: { type: GraphQLNonNull(GraphQLString) },
+        strength: { type: GraphQLNonNull(GraphQLInt) },
+        constitution: { type: GraphQLNonNull(GraphQLInt) },
+        dexterity: { type: GraphQLNonNull(GraphQLInt) },
+        wisdom: { type: GraphQLNonNull(GraphQLInt) },
+        intelligence: { type: GraphQLNonNull(GraphQLInt) },
+        charisma: { type: GraphQLNonNull(GraphQLInt) },
         userId: { type: GraphQLNonNull(GraphQLInt) },
         user: {
             type: UserType,
             resolve: (character) => {
                 return users.find(user => user.id === character.userId)
             }
-        }
+        },        
     })
 })
 
@@ -96,7 +104,15 @@ const RootMutationType = new GraphQLObjectType ({
             description: 'Add a character',
             args: {
                 name: { type: GraphQLNonNull(GraphQLString) },
-                userId: { type: GraphQLNonNull(GraphQLInt) }
+                userId: { type: GraphQLNonNull(GraphQLInt) },
+                level: { type: GraphQLNonNull(GraphQLInt) },
+                race: { type: GraphQLNonNull(GraphQLString) },
+                strength: { type: GraphQLNonNull(GraphQLInt) },
+                constitution: { type: GraphQLNonNull(GraphQLInt) },
+                dexterity: { type: GraphQLNonNull(GraphQLInt) },
+                wisdom: { type: GraphQLNonNull(GraphQLInt) },
+                intelligence: { type: GraphQLNonNull(GraphQLInt) },
+                charisma: { type: GraphQLNonNull(GraphQLInt) },
             },
             resolve: (parent, args) => {
                 const character = { id: characters.length + 1, name: args.name, userId: args.userId }
@@ -116,6 +132,22 @@ const RootMutationType = new GraphQLObjectType ({
                 return user
             }
         },
+        updateCharacter: {
+            type: CharacterType,
+            description: 'Edit a character',
+            args: {
+                id: { type: GraphQLNonNull(GraphQLInt) },
+                name: { type: GraphQLNonNull(GraphQLString) },
+                level: { type: GraphQLNonNull(GraphQLInt) },
+                race: { type: GraphQLNonNull(GraphQLString) },
+                strength: { type: GraphQLNonNull(GraphQLInt) },
+                constitution: { type: GraphQLNonNull(GraphQLInt) },
+                dexterity: { type: GraphQLNonNull(GraphQLInt) },
+                wisdom: { type: GraphQLNonNull(GraphQLInt) },
+                intelligence: { type: GraphQLNonNull(GraphQLInt) },
+                charisma: { type: GraphQLNonNull(GraphQLInt) },
+            },
+        }
     })
 })
 
