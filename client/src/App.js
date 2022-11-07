@@ -9,8 +9,8 @@ function App() {
   return (
     <div className="grid place-items-center min-h-screen xl:grid-cols-2 bg-white">
     <>
-    {/* <Sheet />
-    <Card /> */}
+    <Sheet />
+    <Card /> 
     <Creation />
     </>
     </div>

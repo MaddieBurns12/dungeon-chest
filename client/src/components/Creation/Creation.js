@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSate } from 'react';
+import { useState } from 'react';
 import Select from 'react-select';
 
 export default function Creation() {
@@ -8,6 +8,7 @@ export default function Creation() {
 
 
   return (
+    <div className="w-fit h-fit bg- shadow-lg rounded-lg overflow-hidden my-4 bg-silver">
     <div>
         <input type="text" 
             name="name" 
@@ -42,6 +43,7 @@ export default function Creation() {
             <option>20</option>
            
         </select>
+    </div>
     </div>
   )
 }
