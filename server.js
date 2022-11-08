@@ -9,18 +9,23 @@ const {
     GraphQLNonNull
 } = require('graphql');
 const app = express();
+// importing mongoose into the server
+const mongoose = require('mongoose');
 
-const characters = [
-    { id: 1, name: 'main', level: 3, race: 'human', strength: 5, constitution: 5, dexterity: 5, wisdom: 5, intelligence: 5, charisma: 5, userId: 1 },
-    { id: 2, name: 'secondary', level: 7, race: 'gnome', strength: 5, constitution: 5, dexterity: 5, wisdom: 5, intelligence: 5, charisma: 5, userId: 3 },
-    { id: 3, name: 'throwaway', level: 1, race: 'elf', strength: 5, constitution: 5, dexterity: 5, wisdom: 5, intelligence: 5, charisma: 5, userId: 2 }
-]
+const Character = require('./server/models/Characters');
+const User = require('./server/models/User');
 
-const users = [
-    { id: 1, name: 'user1', userId: 1 },
-    { id: 2, name: 'user2', userId: 2 },
-    { id: 3, name: 'user3', userId: 3 }
-]
+// const characters = [
+//     { id: 1, name: 'main', level: 3, race: 'human', strength: 5, constitution: 5, dexterity: 5, wisdom: 5, intelligence: 5, charisma: 5, userId: 1 },
+//     { id: 2, name: 'secondary', level: 7, race: 'gnome', strength: 5, constitution: 5, dexterity: 5, wisdom: 5, intelligence: 5, charisma: 5, userId: 3 },
+//     { id: 3, name: 'throwaway', level: 1, race: 'elf', strength: 5, constitution: 5, dexterity: 5, wisdom: 5, intelligence: 5, charisma: 5, userId: 2 }
+// ]
+
+// const users = [
+//     { id: 1, name: 'user1', userId: 1 },
+//     { id: 2, name: 'user2', userId: 2 },
+//     { id: 3, name: 'user3', userId: 3 }
+// ]
 
 const CharacterType = new GraphQLObjectType({
     name: 'Character',
@@ -115,9 +120,22 @@ const RootMutationType = new GraphQLObjectType ({
                 charisma: { type: GraphQLNonNull(GraphQLInt) },
             },
             resolve: (parent, args) => {
-                const character = { id: characters.length + 1, name: args.name, userId: args.userId }
-                characters.push(character)
-                return character
+                // const character = { id: characters.length + 1, name: args.name, userId: args.userId }
+                // characters.push(character)
+                // return character
+                let character = new Character({
+                    name: args.name,
+                    // don't need ID because Mongo creates one, i think
+                    level: args.level,
+                    race: args.race,
+                    strength: args.strength,
+                    constitution: args.constitution,
+                    dexterity: args.dexterity,
+                    wisdom: args.wisdom,
+                    intelligence: args.intelligence,
+                    charisma: args.charisma
+                });
+                return character.save();
             }
         },
         addUser: {
@@ -151,6 +169,10 @@ const RootMutationType = new GraphQLObjectType ({
     })
 })
 
+
+// i think this is supposed to be a module.export?
+// module.exports = new GraphQLSchema
+// maybe not because this is the server js
 const schema = new GraphQLSchema ({
     query: RootQueryType,
     mutation: RootMutationType
@@ -160,4 +182,9 @@ app.use('/graphql', expressGraphQL({
     schema: schema,
     graphiql: true
 }));
+
+// when Heroku is deployed, it will use this code to tell mongoose
+// which database to connect to
+mongoose.connect(process.env.MONGODB_URI)
+
 app.listen(5000, () => console.log('Server Running'));
