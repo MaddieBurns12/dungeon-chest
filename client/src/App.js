@@ -7,26 +7,30 @@ import React  from 'react';
 
 function App() {
   return (
-    <div className="grid place-items-center min-h-screen xl:grid-cols-2 bg-white">
+    <div className=" bg-gray ">
+      <h1 className=" text-center">Dungeon Chest</h1>
+
+    <div className="grid place-items-center min-h-screen xl:grid-cols-4 md:grid-cols-2">
     <>
     <Sheet />
-    <Card /> 
+    <Card />  
     <Creation />
     </>
+    </div>
     </div>
   );
 }
 
 export default App;
 
-require("dotenv").config();
-require("./config/database").connect();
-const express = require("express");
+// require("dotenv").config();
+// require("./config/database").connect();
+// const express = require("express");
 
-const app = express();
+// const app = express();
 
-app.use(express.json());
+// app.use(express.json());
 
-// Logic goes here
+// // Logic goes here
 
-module.exports = app;
+// module.exports = app;

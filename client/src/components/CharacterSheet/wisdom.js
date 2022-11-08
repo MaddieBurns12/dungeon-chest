@@ -4,9 +4,10 @@ export default function wisdom() {
     return (
         <div className = "py-4 px-6 ">
         <div className="flex items-center mt-4 text-gray-700">
-                <h1 className="px-2 text-xl">Wisdom Checks</h1>
+                <h1 className="px-2 text-xl">Wisdom</h1>
             </div>
 
+    
             <div>
                 <ul className>
                     <li>Animal Handling</li>

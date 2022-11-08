@@ -9,7 +9,7 @@ import Wisdom from './wisdom.js';
 export default function Sheet() {
   return (
 <div>
-    <div className="w-fit h-fit bg- shadow-lg rounded-lg overflow-hidden my-4 bg-silver">
+    <div className="w-fit h-fit bg- shadow-lg rounded-lg overflow-hidden bg-silver m-4">
 
         <div className = " flex items-end">
             <img className="w-1/4 h-1/4 object-cover object-center mx-auto" 
@@ -19,7 +19,7 @@ export default function Sheet() {
 
     <div className="flex flex-row justify-between" >
         <div className = " px-6 bg-gray-900  ">
-            <h1 className = "text-2xl font-semibold text-gray-800">Player Name</h1>
+            <h2 className = "text-2xl font-semibold text-gray-800">Player Name</h2>
         </div>
 
         <div className = " px-6 bg-gray-900 basis-1/2 text-right">
@@ -28,7 +28,7 @@ export default function Sheet() {
 
     </div>
 {/* Attributes */}
-        <div className = 'grid xl:grid-cols-2 xs:grid-col-1 py-4 px-6 '>
+        <div className = 'grid xl:grid-cols-2 xs:grid-col-1 py-2 px-4 '>
 
             <div className="flex items-center mt-4 text-gray-700">
                 <h1 className="px-2 text-xl underline underline-offset-4 ">Strength</h1>     
