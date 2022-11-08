@@ -1,25 +1,59 @@
+const { Schema, model } = require('mongoose');
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
 const characterSchema = new Schema({
-    name: String,
-    level: Number,
-    race: String,
-    class: String,
-    gender: String,
+    name: {
+        type: String,
+        require: true
+    },
+    level: {
+        type: Number,
+        require: true
+    },
+    race: {
+        type: String,
+        require: true
+    },
+    class: {
+        type: String,
+        require: true
+    },
+    gender: {
+        type: String,
+        require: true
+    },
     // age: Number,
-    strength: Number,
-    constitution: Number,
-    dexterity: Number,
-    wisdom: Number,
-    intelligence: Number,
-    charisma: Number,
+    strength: {
+        type: Number,
+        require: true
+    },
+    constitution: {
+        type: Number,
+        require: true
+    },
+    dexterity: {
+        type: Number,
+        require: true
+    },
+    wisdom: {
+        type: Number,
+        require: true
+    },
+    intelligence: {
+        type: Number,
+        require: true
+    },
+    charisma: {
+        type: Number,
+        require: true
+    },
     userId: {
-        // bind to user that made it
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "User"
     }
 });
 
-module.exports = mongoose.model('Character', characterSchema);
+module.exports = model('Character', characterSchema);
 
 // data we want stored when the client creates a new character
 

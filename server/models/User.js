@@ -1,13 +1,26 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { Schema, model } = require('mongoose');
+
 
 const userSchema = new Schema({
-    name: String,
-    email: String,
-    password: String,
+    name: {
+        type: String,
+        required: true
+    },
+    username: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required:  true
+    }
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = model('User', userSchema);
 
 // Data we want stored when the client creates a new user:
 
