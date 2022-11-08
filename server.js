@@ -147,6 +147,16 @@ const RootMutationType = new GraphQLObjectType ({
                 intelligence: { type: GraphQLNonNull(GraphQLInt) },
                 charisma: { type: GraphQLNonNull(GraphQLInt) },
             },
+        },
+        deleteCharacter: {
+            type: CharacterType,
+            description: 'Delete a character',
+            args: {
+                id: { type: GraphQLID }
+            },
+            resolve(parent, args) {
+                return characters.findByIdAndDelete(args.id);
+            }
         }
     })
 })
