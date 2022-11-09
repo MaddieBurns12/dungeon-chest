@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const Character = require('./Characters');
 
 const userSchema = new Schema({
     username: {
@@ -14,7 +13,12 @@ const userSchema = new Schema({
         type: String,
         required:  true
     },
-    characters: [Character.schema]
+    characters: [
+        {type: Schema.Types.ObjectId,
+        ref: "Character"
+    }
+    ]
+
 });
 
 module.exports = model('User', userSchema);

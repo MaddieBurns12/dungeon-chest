@@ -25,6 +25,9 @@ const typeDefs = gql`
         wisdom: Int
         intelligence: Int
         charisma: Int
+        good: String
+        bad: String
+        inventory: String
     }
     type Query {
        me: User
@@ -46,6 +49,9 @@ const typeDefs = gql`
             wisdom: Int!,
             intelligence: Int!,
             charisma: Int!
+            good: String!,
+            bad: String!,
+            inventory: String
         ): Character
         updateCharacter(
             id: ID!,
@@ -56,7 +62,8 @@ const typeDefs = gql`
             dexterity: Int,
             wisdom: Int,
             intelligence: Int,
-            charisma: Int
+            charisma: Int,
+            inventory: String
         ): Character
         deleteCharacter(
             id: ID!
