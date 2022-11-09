@@ -44,7 +44,7 @@ const resolvers = {
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { characters: character }},
+                    { $addToSet: { characters: character._id }},
                     { new: true }
                 );
 
@@ -54,13 +54,13 @@ const resolvers = {
         },
         updateCharacter: async (parent, { level, gender, strength, constitution, dexterity, wisdom, intelligence, charisma, id }, context) => {
             if(context.user) {
-                const character = await Character.findOneAndUpdate({ level, gender, strength, constitution, dexterity, wisdom, intelligence, charisma, id });
+                const character = await Character.findOneAndUpdate({ _id: id }, { level, gender, strength, constitution, dexterity, wisdom, intelligence, charisma }, { new: true });
 
-                await User.findByIdAndUpdate(
-                    { _id: context.user._id },
-                    { $push: { characters: character }},
-                    { new: true }
-                );
+                // await User.findByIdAndUpdate(
+                //     { _id: context.user._id },
+                //     { $push: { characters: character }},
+                //     { new: true }
+                // );
 
                 return character;
             }
@@ -68,11 +68,11 @@ const resolvers = {
         },
         deleteCharacter: async (parent, args, context) => {
             if (context.user) {
-                const character = await Character.findOneAndRemove({ ... args });
-
+                const character = await Character.findOneAndDelete({ _id: args.id });
+                console.log(character, args);
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $pull: { characters: character }},
+                    { $pull: { characters: character._id }},
                     { new: true }
                 );
 
