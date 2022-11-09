@@ -18,12 +18,17 @@ const resolvers = {
             }
             throw new AuthenticationError('Not logged in');
         },
-        characters: async (parent, { username }) => {
-            const params = username ? { username } : {};
-            return Character.find(params).sort({ createdAt: -1 });
-        },
+        // characters: async (parent, { username }) => {
+        //     const params = username ? { username } : {};
+        //     return Character.find(params).sort({ createdAt: -1 });
+        // },
         character: async (parent, { _id }) => {
-            return Character.findOne({ _id });
+            if (context.user) {
+                const characterData = await Character.findOne({ _id });
+                
+                return characterData;
+            }
+            throw new AuthenticationError('Not logged in');
         }
     },
     Mutation : {
