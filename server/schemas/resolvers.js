@@ -12,18 +12,23 @@ const resolvers = {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                 .select('-password')
-                .populate('characters')
+                .populate('characters');
                 
                 return userData;
             }
             throw new AuthenticationError('Not logged in');
         },
-        characters: async (parent, { username }) => {
-            const params = username ? { username } : {};
-            return Character.find(params).sort({ createdAt: -1 });
-        },
-        character: async (parent, { _id }) => {
-            return Character.findOne({ _id });
+        // characters: async (parent, { username }) => {
+        //     const params = username ? { username } : {};
+        //     return Character.find(params).sort({ createdAt: -1 });
+        // },
+        character: async (parent, { _id }, context) => {
+            if (context.user) {
+                const characterData = await Character.findOne({ _id });
+                
+                return characterData;
+            }
+            throw new AuthenticationError('Not logged in');
         }
     },
     Mutation : {
@@ -39,7 +44,35 @@ const resolvers = {
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { characters: character._id }},
+                    { $push: { characters: character }},
+                    { new: true }
+                );
+
+                return character;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        updateCharacter: async (parent, { level, gender, strength, constitution, dexterity, wisdom, intelligence, charisma, id }, context) => {
+            if(context.user) {
+                const character = await Character.findOneAndUpdate({ level, gender, strength, constitution, dexterity, wisdom, intelligence, charisma, id });
+
+                await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { characters: character }},
+                    { new: true }
+                );
+
+                return character;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        deleteCharacter: async (parent, { id }, context) => {
+            if (context.user) {
+                const character = await Character.findOneAndUpdate({ id });
+
+                await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { characters: character }},
                     { new: true }
                 );
 
@@ -54,7 +87,7 @@ const resolvers = {
                 throw new AuthenticationError('Incorrect credentials');
             }
 
-            const correctPw = await user.isCorrectPassword(password);
+            const correctPw = user.password === password;
 
             // user.password = await bcrypt.hash(password, 12)
             // or would you hash correctPw?

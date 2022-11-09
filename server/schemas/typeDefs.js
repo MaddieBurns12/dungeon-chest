@@ -25,7 +25,6 @@ const typeDefs = gql`
         wisdom: Int
         intelligence: Int
         charisma: Int
-
     }
     type Query {
        me: User
@@ -35,7 +34,33 @@ const typeDefs = gql`
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(username: String! email: String!, password: String!): Auth
-        addCharacter: Character
+        addCharacter(
+            name: String!,
+            level: Int!,
+            race: String!,
+            class: String!,
+            gender: String!,
+            strength: Int!,
+            constitution: Int!,
+            dexterity: Int!,
+            wisdom: Int!,
+            intelligence: Int!,
+            charisma: Int!
+        ): Character
+        updateCharacter(
+            id: ID!,
+            level: Int,
+            gender: String,
+            strength: Int,
+            constitution: Int,
+            dexterity: Int,
+            wisdom: Int,
+            intelligence: Int,
+            charisma: Int
+        ): Character
+        deleteCharacter(
+            id: ID!
+        ): Character
     }
     type Auth {
         token: ID!
