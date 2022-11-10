@@ -33,7 +33,7 @@ export default function Nav() {
     <a className="px-3 py-2 flex items-center text-white hover:opacity-75" href="/Creation">New Hero</a>
     </li>
     <li>
-    <a className="px-3 py-2 flex items-center text-white hover:opacity-75" href="/Login">Log Out</a>
+    <a className="px-3 py-2 flex items-center text-white hover:opacity-75" href="/">Log Out</a>
     </li>
   </ul>
 
