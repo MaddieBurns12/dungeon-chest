@@ -47,6 +47,17 @@ const characterSchema = new Schema({
         type: Number,
         require: true
     },
+    good: {
+        type: String,
+        require: true
+    },
+    bad: {
+        type: String,
+        require: true
+    },
+    inventory: {
+        type: String,
+    },
     userId: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: "User"
