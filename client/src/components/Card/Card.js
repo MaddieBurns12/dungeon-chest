@@ -20,11 +20,13 @@ const [selectedCharacter, setSelectedCharacter] = useState(null);
                 return <>Loading</>
         };
 
-        if (characters.length < 1) return (
+        if (characters.length < 1 || !selectedCharacter) return (
                 <div className="p-6 bg-silver shadow-lg rounded-lg overflow-hidden my-4">
                         <h2>No Characters Created</h2>
                 </div>
         ) ;
+
+        console.log(selectedCharacter)
 
         const { name, level, class: characterClass, strength, constitution, dexterity, intelligence, wisdom, charisma  } = selectedCharacter;
 
