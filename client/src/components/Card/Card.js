@@ -1,7 +1,8 @@
 import React from 'react';
 import orc from '../../assets/orc.png';
+import Sheet from '../../components/CharacterSheet/Sheet.js';
 
-function Card() {
+const Card = () => {
     return (
     <div className="max-w-sm bg-silver shadow-lg rounded-lg overflow-hidden my-4">
 
@@ -11,7 +12,7 @@ function Card() {
         </div>
 
         <div className = " px-6 bg-gray-900 ">
-            <h1 className = "text-2xl font-semibold text-gray-800 text-center">Player Name</h1>
+            <a href="/Sheet" className = "text-2xl font-semibold text-gray-800 text-center">Player Name</a>
             <p className = " text-lg text-gray-700 text-center">Class, Level, Subclass</p>
         </div>
 

@@ -6,7 +6,7 @@ import Dexterity from './dexterity.js';
 import Intelligence from './intelligence.js';
 import Wisdom from './wisdom.js';
 
-export default function Sheet() {
+const Sheet = () => {
   return (
 <div>
     <div className="w-fit h-fit bg- shadow-lg rounded-lg overflow-hidden bg-silver m-4">
@@ -87,3 +87,6 @@ export default function Sheet() {
     </div>   
   )
 }
+
+
+export default Sheet;

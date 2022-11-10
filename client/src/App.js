@@ -1,37 +1,34 @@
+import React, {useState, Component}  from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Card from './components/Card/Card.js';
 import Sheet from './components/CharacterSheet/Sheet.js';
 import Creation from './components/Creation/Creation.js';
-import Menu from './components/Menu/Menu.js';
+import Nav from './components/Nav/Nav';
+
 import Login from './components/Login/Login.js';
 import './App.css';
-import React from 'react';
+
 
 function App() {
+ 
   return (
-    <div className=" bg-gray ">
-      <Menu />
+    
+    <div className=" bg-gray  ">
+      <Nav />
       <div className="grid place-items-center min-h-screen">
-        <>
-          <Login />
-          {/* <Sheet />
-    <Card />  
-    <Creation /> */}
-        </>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/Creation" element={<Creation />} />
+          <Route path="/Card" element={<Card />} />
+          <Route path="/Sheet" element={<Sheet />} />
+        </Routes>
+        
       </div>
     </div>
+
   );
-}
+};
+
+
 export default App;
-
-// require("dotenv").config();
-// require("./config/database").connect();
-// const express = require("express");
-
-// const app = express();
-
-// app.use(express.json());
-
-// // Logic goes here
-
-// module.exports = app;

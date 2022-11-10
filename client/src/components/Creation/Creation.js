@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import Select from 'react-select';
 
-export default function Creation() {
+const Creation = () => {
 
     const [name, setName] = useState('');
 
@@ -17,7 +17,6 @@ export default function Creation() {
               className=" px-4 py-2 border-b-2 border-gray-400 rounded-lg m-1"
               label="Character Name"
               placeholder="Character Name"
-              value = {name}
               required >
           </input>
 
@@ -240,9 +239,16 @@ export default function Creation() {
             className="rounded-lg mt-1 w-full"></textarea>
       </div>
 
+      <button
+      className="bg-alert-good cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded  block  outline-none focus:outline-none" 
+      type="button"
+        >Create Hero
+      </button>
+
     </div>
     
     </div>
   )
 }
 
+export default Creation;
