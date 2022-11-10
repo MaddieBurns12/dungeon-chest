@@ -24,7 +24,7 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_CHARACTER = gql`
-mutation ADD_CHARACTER ($name: String!, $level: Int!, $race: String!, $class: String!, $gender: String!, $strength: Int!, $constitution: Int!, $dexterity: Int!, $wisdom: Int!, $intelligence: Int!, $charisma: Int!, $good: String!, $bad: String!) {
+mutation ADD_CHARACTER ($name: String!, $level: String!, $race: String!, $class: String!, $gender: String!, $strength: String!, $constitution: String!, $dexterity: String!, $wisdom: String!, $intelligence: String!, $charisma: String!, $good: String!, $bad: String!) {
     addCharacter(name: $name, level: $level, race: $race, class: $class, gender: $gender, strength: $strength, constitution: $constitution, dexterity: $dexterity, wisdom: $wisdom, intelligence: $intelligence, charisma: $charisma, good: $good, bad: $bad) {
       wisdom
       strength

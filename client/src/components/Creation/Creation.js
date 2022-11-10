@@ -3,9 +3,11 @@ import { useState } from 'react';
 import Select from 'react-select';
 import { useQuery, useMutation } from '@apollo/client';
 import { ADD_CHARACTER } from '../../utils/mutations';
+import { useNavigate } from 'react-router-dom';
 
 
 const Creation = () => {
+  const navigate = useNavigate();
 
 const [addCharacter, {error}] = useMutation(ADD_CHARACTER);
 const [newCharacter, setNewCharacter] = useState({})
@@ -24,13 +26,19 @@ const handleSubmit = async (event) => {
   // event.preventDefault()
   console.log(newCharacter);
   try {
-    const {data} = await ADD_CHARACTER({
+    const {data} = await addCharacter({
       variables:{...newCharacter}
     })
+
+    console.log(data);
+    navigate('/Card')
+
+
   } catch(e) {
-    console.log(error)
+    console.log(error);
+    console.log(e);
   }
-  setNewCharacter({})
+  // setNewCharacter({})
 }
 
 console.log(newCharacter)
@@ -48,6 +56,26 @@ console.log(newCharacter)
               label="Character Name"
               placeholder="Character Name"
               defaultValue="Hero"
+              onChange={handleChange}
+              required >
+          </input>
+
+          <input type="text" 
+              name="race" 
+              className=" px-4 py-2 border-b-2 border-gray-400 rounded-lg m-1"
+              label="Character Race"
+              placeholder="Race"
+              defaultValue=""
+              onChange={handleChange}
+              required >
+          </input>
+
+          <input type="text" 
+              name="gender" 
+              className=" px-4 py-2 border-b-2 border-gray-400 rounded-lg m-1"
+              label="Character Race"
+              placeholder="Gender"
+              defaultValue=""
               onChange={handleChange}
               required >
           </input>

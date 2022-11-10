@@ -15,16 +15,16 @@ const typeDefs = gql`
     type Character {
         _id: ID
         name: String
-        level: Int
+        level: String
         race: String
         class: String
         gender: String
-        strength: Int
-        constitution: Int
-        dexterity: Int
-        wisdom: Int
-        intelligence: Int
-        charisma: Int
+        strength: String
+        constitution: String
+        dexterity: String
+        wisdom: String
+        intelligence: String
+        charisma: String
         good: String
         bad: String
         inventory: String
@@ -39,30 +39,30 @@ const typeDefs = gql`
         addUser(username: String! email: String!, password: String!): Auth
         addCharacter(
             name: String!,
-            level: Int!,
+            level: String!,
             race: String!,
             class: String!,
             gender: String!,
-            strength: Int!,
-            constitution: Int!,
-            dexterity: Int!,
-            wisdom: Int!,
-            intelligence: Int!,
-            charisma: Int!
+            strength: String!,
+            constitution: String!,
+            dexterity: String!,
+            wisdom: String!,
+            intelligence: String!,
+            charisma: String!
             good: String!,
             bad: String!,
             inventory: String
         ): Character
         updateCharacter(
             id: ID!,
-            level: Int,
+            level: String,
             gender: String,
-            strength: Int,
-            constitution: Int,
-            dexterity: Int,
-            wisdom: Int,
-            intelligence: Int,
-            charisma: Int,
+            strength: String,
+            constitution: String,
+            dexterity: String,
+            wisdom: String,
+            intelligence: String,
+            charisma: String,
             inventory: String
         ): Character
         deleteCharacter(

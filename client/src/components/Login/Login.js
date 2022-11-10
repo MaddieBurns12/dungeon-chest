@@ -54,7 +54,7 @@ const Login = () => {
       console.log(newUserData);
 
       Auth.login(newUserData.data.addUser.token);
-      navigate('/Card')
+      navigate('/Creation')
 
     } catch (err) {
       console.log(err);
