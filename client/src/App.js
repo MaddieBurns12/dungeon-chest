@@ -2,19 +2,21 @@
 import Card from './components/Card/Card.js';
 import Sheet from './components/CharacterSheet/Sheet.js';
 import Creation from './components/Creation/Creation.js';
+import Menu from './components/Menu/Menu.js';
+import Login from './components/Login/Login.js';
 import './App.css'; 
 import React  from 'react';
 
 function App() {
   return (
     <div className=" bg-gray ">
-      <h1 className=" text-center">Dungeon Chest</h1>
-
-    <div className="grid place-items-center min-h-screen xl:grid-cols-4 md:grid-cols-2">
+    <Menu />
+    <div className="grid place-items-center min-h-screen">
     <>
-    <Sheet />
+    <Login />
+    {/* <Sheet />
     <Card />  
-    <Creation />
+    <Creation /> */}
     </>
     </div>
     </div>
