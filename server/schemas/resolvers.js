@@ -90,6 +90,7 @@ const resolvers = {
             }
 
             const correctPw = user.password === password;
+            console.log(password)
 
             // user.password = await bcrypt.hash(password, 12)
             // or would you hash correctPw?

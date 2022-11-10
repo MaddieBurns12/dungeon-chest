@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import orc from '../../assets/orc.png';
-// import Strength from './strength.js';
+import Strength from './strength.js';
 import Charisma from './charisma.js';
-// import Dexterity from './dexterity.js';
-// import Intelligence from './intelligence.js';
-// import Wisdom from './wisdom.js';
+import Dexterity from './dexterity.js';
+import Intelligence from './intelligence.js';
+import Wisdom from './wisdom.js';
 import { useQuery } from '@apollo/client'
 import { QUERY_CHARACTERS } from '../../utils/queries';
 
@@ -17,7 +17,7 @@ const Sheet = () => {
 
     useEffect(() => {
         if (!data) return;
-        setSelectedCharacter(characters[0]);
+        setSelectedCharacter(characters[characters.length - 1]);
     }, [data]);
 
 
@@ -80,15 +80,15 @@ const Sheet = () => {
     <div className="grid grid-cols-3 sm:grid-col-1">
 
         <div>
-        {/* <Strength /> */}
+        <Strength />
         </div>
 
         <div>
-        {/* <Dexterity /> */}
+        <Dexterity /> 
         </div>
 
         <div>
-        {/* <Wisdom /> */}
+        <Wisdom />
         </div>
 
         <div>
@@ -96,7 +96,7 @@ const Sheet = () => {
         </div>
 
         <div>
-        {/* <Intelligence /> */}
+        <Intelligence />
         </div>
 
     </div>

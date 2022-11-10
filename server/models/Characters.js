@@ -7,7 +7,7 @@ const characterSchema = new Schema({
         require: true
     },
     level: {
-        type: Number,
+        type: String,
         require: true
     },
     race: {
@@ -22,29 +22,29 @@ const characterSchema = new Schema({
         type: String,
         require: true
     },
-    // age: Number,
+    // age: String,
     strength: {
-        type: Number,
+        type: String,
         require: true
     },
     constitution: {
-        type: Number,
+        type: String,
         require: true
     },
     dexterity: {
-        type: Number,
+        type: String,
         require: true
     },
     wisdom: {
-        type: Number,
+        type: String,
         require: true
     },
     intelligence: {
-        type: Number,
+        type: String,
         require: true
     },
     charisma: {
-        type: Number,
+        type: String,
         require: true
     },
     good: {
