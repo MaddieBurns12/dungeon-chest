@@ -10,10 +10,11 @@ const resolvers = {
     Query: {
         me: async (parent, args, context) => {
             if (context.user) {
+                console.log('1')
                 const userData = await User.findOne({ _id: context.user._id })
                 .select('-password')
                 .populate('characters');
-                
+
                 return userData;
             }
             throw new AuthenticationError('Not logged in');
