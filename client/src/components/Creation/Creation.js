@@ -4,12 +4,13 @@ import Select from 'react-select';
 
 const Creation = () => {
 
-    const [name, setName] = useState('');
+
 
 
   return (
     <div className="w-fit h-fit bg- shadow-lg rounded-lg overflow-hidden my-4 bg-silver">
       <div className="py-4 px-6">
+
         <h2 className="text-center">Character Creation</h2>
         <div className="flex justify-evenly ">
           <input type="text" 
@@ -21,7 +22,7 @@ const Creation = () => {
           </input>
 
 {/* Class */}
-        <select name="class"id="level" className="rounded-lg m-1" required>
+        <select name="class" id="class" className="rounded-lg m-1" required>
             <option value="" disable selected hidden>Select Class</option>
             <option value="barbarian">Barbarian</option>
             <option value="bard">Bard</option>
@@ -68,7 +69,7 @@ const Creation = () => {
 {/* Strength */}
       <div className="flex items-center mt-1 text-gray-700 justify-between">
         <label for="strength">Strength</label>
-        <select name="strength"id="level" className="rounded-lg" required>
+        <select name="strength"id="strength" className="rounded-lg" required>
         <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -120,7 +121,7 @@ const Creation = () => {
 {/* Dexterity */}
       <div className="flex items-center mt-1 text-gray-700 justify-between">
         <label for="dexterity" >Dexterity</label>
-        <select name="dexterity"id="level" className="rounded-lg" required>
+        <select name="dexterity"id="dexterity" className="rounded-lg" required>
         <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -146,7 +147,7 @@ const Creation = () => {
 {/* Intelligence */}
       <div className="flex items-center mt-1 text-gray-700 justify-between">
         <label for="intelligence">Intelligence</label>
-        <select name="intelligence"id="level" className="rounded-lg" required>
+        <select name="intelligence"id="intelligence" className="rounded-lg" required>
         <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -172,7 +173,7 @@ const Creation = () => {
 {/* Wisdom */}
       <div className="flex items-center mt-1 text-gray-700 justify-between">
         <label for="wisdom">Wisdom</label>
-        <select name="wisdom"id="level" className="rounded-lg" required>
+        <select name="wisdom"id="wisdom" className="rounded-lg" required>
         <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -198,7 +199,7 @@ const Creation = () => {
 {/* Charisma */}
       <div className="flex items-center mt-1 text-gray-700 justify-between">
         <label for="charisma">Charisma</label>
-        <select name="charisma"id="level" className="rounded-lg" required>
+        <select name="charisma"id="charisma" className="rounded-lg" required>
         <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -226,22 +227,22 @@ const Creation = () => {
       <div className="flex justify-between mt-1">
         
         <textarea placeholder="Please tell us about your characters good side"
-          className="rounded-lg mt-1 mr-1 w-full"></textarea>
+          className="rounded-lg mt-1 mr-1 w-full" name="good"></textarea>
         
        
         <textarea placeholder="Please tell us about your characters bad side"
-          className="rounded-lg mt-1 w-full"></textarea>
+          className="rounded-lg mt-1 w-full" name="bad"></textarea>
         
       </div>
 
       <div>
         <textarea placeholder="What is your character carrying?"
-            className="rounded-lg mt-1 w-full"></textarea>
+            className="rounded-lg mt-1 w-full" name="inventory"></textarea>
       </div>
 
       <button
       className="bg-alert-good cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded  block  outline-none focus:outline-none" 
-      type="button"
+      type="button" name="submitHero"
         >Create Hero
       </button>
 

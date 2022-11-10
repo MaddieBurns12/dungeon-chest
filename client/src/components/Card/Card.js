@@ -8,7 +8,7 @@ const Card = () => {
 
     return (
 //beginning of card structure
-    <div className="sm:w-1/3 sm:h-1/2 lg:w-fit lg: bg-silver shadow-lg rounded-lg overflow-hidden my-4">
+    <div className="sm:w-1/3 sm:h-fit lg:w-fit lg: bg-silver shadow-lg rounded-lg overflow-hidden my-4">
 
         <div className = " flex items-end">
         <img className="w-40 h-40 object-cover object-center mx-auto" 

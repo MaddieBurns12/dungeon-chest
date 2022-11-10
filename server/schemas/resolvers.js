@@ -81,8 +81,9 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
         },
         login: async (parent, { email, password }) => {
+            console.log('email --------', email);
             const user = await User.findOne({ email });
-
+            console.log('user -------', user)
             if (!user) {
                 throw new AuthenticationError('Incorrect credentials');
             }

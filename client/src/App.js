@@ -9,23 +9,50 @@ import Nav from './components/Nav/Nav';
 import Login from './components/Login/Login.js';
 import './App.css';
 
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+
+const httpLink = createHttpLink({
+  uri: '/graphql'
+});
+
+const authLink = setContext((_, { headers}) => {
+  const token = localStorage.getItem('id_toke');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : ''
+    }
+  }
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache()
+})
+
 
 function App() {
- 
   return (
-    
-    <div className=" bg-gray  ">
-      <Nav />
-      <div className="grid place-items-center min-h-screen">
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/Creation" element={<Creation />} />
-          <Route path="/Card" element={<Card />} />
-          <Route path="/Sheet" element={<Sheet />} />
-        </Routes>
-        
+    <ApolloProvider client={client}>
+      <div className=" bg-gray  ">
+        <Nav />
+        <div className="grid place-items-center min-h-screen">
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/Creation" element={<Creation />} />
+            <Route path="/Card" element={<Card />} />
+            <Route path="/Sheet" element={<Sheet />} />
+          </Routes>
+          
+        </div>
       </div>
-    </div>
+    </ApolloProvider>
 
   );
 };
